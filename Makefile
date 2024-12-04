@@ -1,32 +1,35 @@
-SRC =	
+GREEN = \033[0;32m
+RED = \033[0;31m
+
+SRC =	src/main.c \
 
 UTILS = 
 
-SOURCES = $(SRC) $(UTILS)
+SRCS = $(SRC) $(UTILS)
 NAME = so_long
-RM = rm -rf
 CC = gcc
-LIBFT_DIR = ./Libft
-MLX_DIR = minilibx-linux
 INCLUDE_P = -I include
 CFLAGS = -Wall -Wextra -Werror $(INCLUDE_P) -fsanitize=address -g3
-OBJ = $(SOURCES:.c=.o)
-LIBFT = /libft.a
-MLX_LIB = -L$(MLX_DIR) -lmlx
-X11_LIB = -lXext -lX11 -lm
+OBJ = $(SRCS:.c=.o)
+INCLUDES = -L./mlx -lmlx -lXext -lX11 -lm
+RM = rm -rf
 all: $(NAME)
 
 $(NAME) : $(OBJ) 
-	$(MAKE) -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) -L$(LIBFT_DIR) $(OBJ) $(LIBFT_DIR)$(LIBFT) -o $(NAME) $(MLX_LIB)
+	@make -s -C libft
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(INCLUDES) -L libft -lft
+	@echo "$(GREEN)It has been compiled!!.👍$(NC)";
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(RM) $(OBJ)
+	@make clean -C libft
+	rm -rf $(OBJ)
 
 fclean :  clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME)
+	@make fclean -s -C libft
+	@rm -rf $(OBJ)
+	@rm -rf $(NAME)
+	@echo "$(RED)Full Cleaning...$(NC)"
+	@echo "$(RED)Full Cleaned!$(NC)"
 
 re: fclean all
 

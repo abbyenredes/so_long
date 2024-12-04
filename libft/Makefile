@@ -1,3 +1,6 @@
+GREEN = \033[0;32m
+RED = \033[0;31m
+
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
@@ -45,7 +48,9 @@ SRC = ft_isalpha.c\
 	  ft_putnbr_unsigned.c\
 	  ft_putnbr_hex.c\
 	  ft_hex_pointer.c\
-	  ft_atoll.c
+	  ft_atoll.c \
+	get_next_line.c \
+	get_next_line_utils.c\
 
 BSRC=  ft_lstnew.c\
 	   ft_lstadd_front.c\
@@ -71,8 +76,8 @@ bonus :	$(OBJ) $(BOBJ)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) $(INCLUDE)
-	 @echo "(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧ Compilando, espere unos segundos..."
 	$(AR) $(NAME) $(OBJS)
+	 @echo "$(GREEN)libft has been compiled!!.👍$(NC)";
 
 clean:
 	$(RM) $(OBJS)
@@ -80,7 +85,8 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-	 @echo "(╯°□°）╯︵ ┻━┻ todo limpio por aquí!"
+	@echo "$(RED)libft full Cleaned!$(NC)"
+
 
 re: fclean all
 rebonus: fclean bonus
