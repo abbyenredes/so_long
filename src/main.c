@@ -6,27 +6,11 @@
 /*   By: abigamas <abigamas@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:37:16 by abigamas          #+#    #+#             */
-/*   Updated: 2024/12/04 19:37:13 by abigamas         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:23:43 by abigamas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-/*int main(void)
-{
-	void *mlx_ptr;
-	void *win_ptr;
-
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		return (1);
-	win_ptr = mlx_new_window(mlx_ptr, 600, 400, "hi :)");
-	if (!win_ptr)
-		return (free(mlx_ptr), 1);
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
-	return (0);
-}*/
 
 int on_destroy(t_data *data)
 {
@@ -54,7 +38,7 @@ int main(void)
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 600, 400, "bayta's adventure");
 	if (!data.win_ptr)
 		return (free(data.mlx_ptr), 1);
-
+		
 	// Register key release hook
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
 
